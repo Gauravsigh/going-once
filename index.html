@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Going Once: a sealed-bid card game for 2–8 players</title>
+  <meta name="description" content="Everyone holds the same cards. Each round one lot goes up for auction and you bid by secretly playing a card. Play with 2–8 friends, each on their own device.">
+  <meta name="theme-color" content="#141016">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Going Once">
+  <meta property="og:description" content="A sealed-bid card game for 2–8 players. Create a room, share the code, bid with your cards.">
+  <meta property="og:image" content="https://gauravsigh.github.io/going-once/assets/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Going Once home">
+      <svg class="gavel" viewBox="0 0 32 32" aria-hidden="true"><use href="#icon-gavel"/></svg>
+      <span>Going Once</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="room-chip" id="room-chip" hidden></span>
+      <button class="icon-btn" type="button" data-action="sound" id="sound-btn" aria-pressed="true" aria-label="Sound on">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M4 9h3.5L12 5v14l-4.5-4H4z"/>
+          <path class="wave" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>
+          <path class="mute" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/>
+        </svg>
+      </button>
+      <button class="btn small ghost" type="button" data-action="rules">Rules</button>
+      <button class="btn small ghost" type="button" data-action="leave" id="leave-btn" hidden>Leave</button>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" role="status" hidden></div>
+  <main id="app"></main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="rules-dialog" aria-labelledby="rules-title">
+    <div class="dialog-body">
+      <h2 id="rules-title">How to play</h2>
+      <div data-rules></div>
+      <button class="btn primary" type="button" data-action="close-dialog">Got it</button>
+    </div>
+  </dialog>
+
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+    <div class="dialog-body">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-text"></p>
+      <div class="dialog-actions">
+        <button class="btn ghost" type="button" data-action="close-dialog">Stay</button>
+        <button class="btn danger" type="button" data-action="confirm-yes">Leave</button>
+      </div>
+    </div>
+  </dialog>
+
+  <template id="rules-template">
+    <ol class="rules">
+      <li><strong>Same hand for everyone.</strong> Each player starts with cards 1 to 10 (the host can pick 7 or 13 instead).</li>
+      <li><strong>One lot per round.</strong> A lot card is flipped. It is worth its number in points.</li>
+      <li><strong>Bid in secret.</strong> Everyone plays one card from their hand. You can switch cards until the last player is in.</li>
+      <li><strong>Highest card wins.</strong> When every card is down they all flip, and the highest card takes the lot. Every card you play is gone for the rest of the game, win or lose.</li>
+      <li><strong>Ties roll over.</strong> If the top card is tied, nobody wins and the lot stays in the pot. The next winner takes the whole pot. A tie on the final lot means nobody gets it.</li>
+      <li><strong>Beat the clock.</strong> With the timer on, anyone who hasn’t played when it runs out plays their lowest card automatically.</li>
+      <li><strong>Most points wins.</strong> After the last card, the highest score wins. Equal scores share the win.</li>
+    </ol>
+    <p class="rules-tip">Tip: the table shows every lot still to come and every card your rivals have left. Count them.</p>
+  </template>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icon-gavel" viewBox="0 0 32 32">
+      <g fill="currentColor">
+        <g transform="rotate(-40 15 13)">
+          <rect x="7" y="4" width="16" height="8" rx="2"/>
+          <rect x="5" y="3" width="3" height="10" rx="1.2"/>
+          <rect x="22" y="3" width="3" height="10" rx="1.2"/>
+          <rect x="13.5" y="12" width="3" height="16" rx="1.5"/>
+        </g>
+        <rect x="2" y="27" width="13" height="3.5" rx="1.2"/>
+      </g>
+    </symbol>
+  </svg>
+  <noscript><p class="noscript">Going Once needs JavaScript to run.</p></noscript>
+</body>
+</html>

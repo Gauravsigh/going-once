@@ -1,0 +1,19 @@
+{
+  "name": "going-once",
+  "version": "1.0.0",
+  "description": "A sealed-bid card game for 2-8 players on their own devices.",
+  "scripts": {
+    "test": "node test/run-unit.mjs",
+    "test:broker": "node test/e2e-broker.mjs",
+    "test:browser": "node test/e2e-browser.mjs",
+    "serve": "node test/serve.mjs"
+  },
+  "author": "Gaurav Singh",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "mqtt": "^5.16.0",
+    "playwright-core": "^1.64.0"
+  },
+  "private": true
+}
